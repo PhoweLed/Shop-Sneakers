@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Увійти</title>
+    <style>
+        .success{
+        color:green;
+        }
+        .error {
+            color:red;
+        }
+        
+        body {
+            background-color: aquamarine;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            
+        }
+
+        .container{
+            background-color: gainsboro;
+            padding: 25px;
+            margin-top: 50px;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+
+        }
+        .container form{
+            display: flex;
+            flex-direction: column;
+            color:darkgreen;
+
+        }
+        .container input{
+            border-radius: 10px;
+            border: 0cap;
+            height: 25px;
+
+        }
+
+        .container button{
+            background-color: black;
+            border: 0cap;
+            border-radius: 10px;
+            color: white;
+            padding: 10px 20px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Вхід</h1>
+        <form method="post" action="/register">
+            <label for = "username">Логін:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for = "password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Увійти:</button>
+        </form>
+        <p>Ще не Зарееєстровані<a href="/register">Увійти</a></p>
+        
+        {% with message = get_flashed_messages(with_categories=true)%}
+            {% if message %}
+                {% for cat,mes  in massage %}
+                    <p class="{{cat}}">{{mes}}</p>
+                {% endfor %}
+            {% endif %}
+
+        {% endwith %}
+        
+    </div>
+</body>
+</html>
