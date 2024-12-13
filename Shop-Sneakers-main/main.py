@@ -52,4 +52,27 @@ def register():
 
     return render_template('register.html')
 
+
+@app.route('/add', methods=['post','get'])
+
+def add():
+    if request.method == 'POST':
+        name = request.form['name']
+        price = request.form['price']
+        conn = sqlite3.connect('sneakers.db')
+        cursor = conn.cursor()
+        try:
+            cursor.execute
+        ("INSERT INTO sneakers (name, price) VALUES (?,?)", (name, price))
+        conn.commit()
+        conn.close()
+
+        
+        except KeyError as e:
+            flash(f"Помилка: Відсутнє поле {e}", "error")
+        except sqlite3.Error as e:
+            flash(f"Помилка бази даних: {e}", "error")
+        except Exception as e:
+            flash(f"Сталася помилка: {e}", "error")
+
 app.run()
